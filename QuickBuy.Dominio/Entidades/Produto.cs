@@ -9,7 +9,9 @@
 
         public override void Validate()
         {
-            throw new System.NotImplementedException();
+            LimparMensagensValidacao();
+            if (string.IsNullOrEmpty(Nome))
+                AdicionarCritica("O nome do produto não foi informado");
         }
     }
 }
