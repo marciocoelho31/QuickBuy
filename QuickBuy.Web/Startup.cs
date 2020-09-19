@@ -39,10 +39,16 @@ namespace QuickBuy.Web
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>(); // injeção de dependência
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+            IHostingEnvironment env = serviceProvider.GetService<IHostingEnvironment>();
+            if (env.IsProduction())
             {
-                configuration.RootPath = "ClientApp/dist";
-            });
+                services.AddSpaStaticFiles(configuration =>
+                {
+                    configuration.RootPath = "ClientApp/dist";
+                });
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +66,12 @@ namespace QuickBuy.Web
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+
+            if (env.IsProduction())
+            {
+                app.UseStaticFiles();
+                app.UseSpaStaticFiles();
+            }
 
             app.UseMvc(routes =>
             {
@@ -81,7 +91,8 @@ namespace QuickBuy.Web
                 {
 
                     spa.UseAngularCliServer(npmScript: "start");   // <==========================
-                    // ou... spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve)
+                    // ou... 
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  // <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve)
 
                 }
             });
