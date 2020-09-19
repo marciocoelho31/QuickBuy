@@ -90,9 +90,9 @@ namespace QuickBuy.Web
                 if (env.IsDevelopment())
                 {
 
-                    spa.UseAngularCliServer(npmScript: "start");   // <==========================
+                    //spa.UseAngularCliServer(npmScript: "start");   // <==========================
                     // ou... 
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  // <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve)
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  // <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve)
 
                 }
             });
