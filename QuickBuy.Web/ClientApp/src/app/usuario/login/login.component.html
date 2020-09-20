@@ -5,16 +5,54 @@
 
     <label for="inputEmail" class="sr-only"></label>
     <input type="email" id="inputEmail" name="email"
-           placeholder="Informe o seu email" class="form-control mb-2"
-           [(ngModel)]="email" />
+           placeholder="Informe o seu email"
+           class="form-control mb-2"
+           [ngClass]="{
+              'is-invalid': email.invalid && (email.dirty || email.touched),
+              'is-valid': email.valid && (email.dirty || email.touched)
+           }"
+           [(ngModel)]="usuario.email"
+           #email="ngModel" email required />
+
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        O e-mail deve ser preenchido.
+      </div>
+      <div *ngIf="email.errors.email">
+        O e-mail não está no formato correto.
+      </div>
+    </div>
 
     <label for="inputSenha" class="sr-only"></label>
     <input type="password" id="inputSenha" name="senha"
-           placeholder="Senha" class="form-control mb-2"
-           [(ngModel)]="senha"/>
+           placeholder="Senha"
+           class="form-control mb-2"
+           [ngClass]="{
+              'is-invalid': senha.invalid && (senha.dirty || senha.touched),
+              'is-valid': senha.valid && (senha.dirty || senha.touched)
+           }"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div *ngIf="senha.errors.required">
+        A senha deve ser preenchida.
+      </div>
+    </div>
 
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
 
     <img src="../../../assets/img/quickb-logo.png" />
+
+    <!--<div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
+    Usuário autenticado.
+  </div>
+
+  <div class="alert alert-warning" role="alert">
+    <div *ngFor="let us of usuarios">
+      {{ us }}
+    </div>
+  </div>-->
+
   </form>
 </div>
