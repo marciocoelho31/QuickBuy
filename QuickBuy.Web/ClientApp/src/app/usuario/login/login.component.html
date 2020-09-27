@@ -42,6 +42,10 @@
 
     <button class="btn btn-primary btn-block" type="submit" (click)="entrar()">Entrar</button>
 
+    <div class="alert alert-danger mt-3" *ngIf="mensagem">
+      {{ mensagem }}
+    </div>
+
     <img src="../../../assets/img/quickb-logo.png" />
 
     <!--<div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
