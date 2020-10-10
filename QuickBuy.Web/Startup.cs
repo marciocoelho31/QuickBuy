@@ -37,6 +37,7 @@ namespace QuickBuy.Web
                                                         m => m.MigrationsAssembly("QuickBuy.Repositorio")));
 
             services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>(); // injeção de dependência
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>(); 
 
             // In production, the Angular files will be served from this directory
 
@@ -85,14 +86,14 @@ namespace QuickBuy.Web
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "ClientApp";  // <----------
 
                 if (env.IsDevelopment())
                 {
 
                     //spa.UseAngularCliServer(npmScript: "start");   // <==========================
                     // ou... 
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  // <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve)
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");  // <=== pra rodar o angular por fora (usar npm start - melhor - ou ng serve) - na pasta ClientApp
 
                 }
             });

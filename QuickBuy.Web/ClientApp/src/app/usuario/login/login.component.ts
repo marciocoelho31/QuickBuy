@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   //public usuarios = ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"];
   public returnUrl: string;
   public mensagem: string;
+  private ativar_spinner: boolean;
 
   constructor(private router: Router, private activatedRouter: ActivatedRoute,
     private usuarioServico: UsuarioServico ) {
@@ -28,15 +29,12 @@ export class LoginComponent implements OnInit {
 
   entrar() {
 
+    this.ativar_spinner = true;
+
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
-        data => {
-          //console.log(data);
-
-          var usuarioRetorno: Usuario;
-          usuarioRetorno = data;
-          sessionStorage.setItem("usuario-autenticado", "1");
-          sessionStorage.setItem("email-usuario", usuarioRetorno.email);
+        usuario_json => {
+          this.usuarioServico.usuario = usuario_json;   // aqui chama o set do usuario
 
           if (this.returnUrl == null) {
             this.router.navigate(['/']);
@@ -48,6 +46,7 @@ export class LoginComponent implements OnInit {
         err => {
           console.log(err.error);
           this.mensagem = err.error;
+          this.ativar_spinner = false;
         }
       );
 
