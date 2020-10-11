@@ -1,14 +1,33 @@
-import { Component } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
+import { Produto } from "../modelo/produto";
+import { ProdutoServico } from "../servicos/produto/produto.servico";
 
 @Component({
   selector: "app-produto",   // onde será renderizado o componente (qual tag)
-  template: "<html><body>{{ obterNome() }}</body></html>"
+  templateUrl: "./produto.component.html",
+  styleUrls: ["./produto.component.css"]
 })
-export class ProdutoComponent {
-  public nome: string;
-  public liberadoParaVenda: boolean;
 
-  public obterNome(): string {
-    return "Samsung";
+export class ProdutoComponent implements OnInit {
+  public produto: Produto;
+
+  constructor(private produtoServico: ProdutoServico) {
+
+  }
+
+  ngOnInit(): void {
+    this.produto = new Produto();
+  }
+
+  public cadastrar() {
+    //this.produtoServico.cadastrar(this.produto)
+    //  .subscribe(
+    //    produtoJson => {
+    //      console.log(produtoJson);
+    //    },
+    //    e => {
+    //      console.log(e.error);
+    //    }
+    //  );
   }
 }
