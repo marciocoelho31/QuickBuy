@@ -4,9 +4,12 @@
 <input type="text" id="inputNome" name="nomeProduto"
        placeholder="Nome do Produto"
        [(ngModel)]="produto.nome"
+       [ngClass]="{
+          'is-invalid': nome.invalid && (nome.dirty || nome.touched),
+          'is-valid': nome.valid && (nome.dirty || nome.touched)
+       }"
        #nome="ngModel"
        class="form-control mb-2 col-md-4"
-       [ngClass]=""
        required />
 <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
   <div *ngIf="nome.errors.required">
@@ -18,9 +21,12 @@
 <input type="text" id="inputDescricao" name="descricaoProduto"
        placeholder="Descrição do Produto"
        [(ngModel)]="produto.descricao"
+       [ngClass]="{
+          'is-invalid': descricao.invalid && (descricao.dirty || descricao.touched),
+          'is-valid': descricao.valid && (descricao.dirty || descricao.touched)
+       }"
        #descricao="ngModel"
-       class="form-control mb-2 col-md-12"
-       [ngClass]=""
+       class="form-control mb-2 col-md-4"
        required />
 <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
   <div *ngIf="descricao.errors.required">
@@ -32,9 +38,12 @@
 <input type="number" id="inputPreco" name="precoProduto"
        placeholder="Preço"
        [(ngModel)]="produto.preco"
+       [ngClass]="{
+          'is-invalid': preco.invalid && (preco.dirty || preco.touched),
+          'is-valid': preco.valid && (preco.dirty || preco.touched)
+       }"
        #preco="ngModel"
        class="form-control mb-2 col-md-2"
-       [ngClass]=""
        required />
 <div class="invalid-feedback mb-2" *ngIf="preco.invalid && (preco.dirty || preco.touched)">
   <div *ngIf="preco.errors.required">
@@ -49,7 +58,10 @@
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="cadastrar" [disabled]="ativarSpinner">
+<button class="btn btn-primary mb-2" (click)="cadastrar()" [disabled]="ativarSpinner">
   <span class="spinner-border spinner-border-sm" *ngIf="ativarSpinner"></span>
   Cadastrar
 </button>
+<div class="alert alert-danger col-md-4" *ngIf="mensagem">
+  {{ mensagem }}
+</div>
