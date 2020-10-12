@@ -29,10 +29,18 @@ namespace QuickBuy.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Usuario usuario)
         {
             try
             {
+                var usuarioCadastrado = _usuarioRepositorio.Obter(usuario.Email);
+                if (usuarioCadastrado != null)
+                {
+                    return BadRequest("Usuário já cadastrado no sistema");
+                }
+
+                _usuarioRepositorio.Adicionar(usuario);
+
                 return Ok();
             }
             catch (Exception ex)
@@ -43,13 +51,13 @@ namespace QuickBuy.Web.Controllers
         }
 
         [HttpPost("VerificarUsuario")]
-        public ActionResult Post([FromBody] Usuario usuario)
+        public ActionResult VerificarUsuario([FromBody] Usuario usuario)
         {
             try
             {
                 var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
                 if (usuarioRetorno != null)
-                    return Ok(usuario);
+                    return Ok(usuarioRetorno);
 
                 return BadRequest("Usuário ou senha inválido");
             }

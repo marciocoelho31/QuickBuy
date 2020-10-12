@@ -86,6 +86,10 @@
       {{ mensagem }}
     </div>
 
+    <div class="alert alert-success mt-3" *ngIf="usuarioCadastrado">
+      Usuário cadastrado com sucesso! <a class="alert-link" [routerLink]='["/entrar"]'>Clique aqui</a> para entrar no sistema com a sua conta.
+    </div>
+
     <img src="../../../assets/img/quickb-logo.png" />
 
     <!--<div class="alert alert-primary" role="alert" *ngIf="usuarioAutenticado">
