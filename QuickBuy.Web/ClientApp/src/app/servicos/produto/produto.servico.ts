@@ -31,8 +31,8 @@ export class ProdutoServico implements OnInit {
       JSON.stringify(produto), { headers: this.headers });
   }
 
-  public excluir(produto: Produto): Observable<Produto> {
-    return this.http.post<Produto>(this.baseURL + "api/produto/excluir",
+  public excluir(produto: Produto): Observable<Produto[]> {
+    return this.http.post<Produto[]>(this.baseURL + "api/produto/excluir",
       JSON.stringify(produto), { headers: this.headers });
   }
 

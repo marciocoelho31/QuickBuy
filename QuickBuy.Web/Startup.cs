@@ -46,7 +46,7 @@ namespace QuickBuy.Web
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             IHostingEnvironment env = serviceProvider.GetService<IHostingEnvironment>();
-            if (env.IsProduction())
+            //if (env.IsProduction())
             {
                 services.AddSpaStaticFiles(configuration =>
                 {
@@ -71,7 +71,7 @@ namespace QuickBuy.Web
 
             app.UseHttpsRedirection();
 
-            if (env.IsProduction())
+            //if (env.IsProduction())
             {
                 app.UseStaticFiles();
                 app.UseSpaStaticFiles();
