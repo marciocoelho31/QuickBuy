@@ -13,7 +13,7 @@
        required />
 <div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
   <div *ngIf="nome.errors.required">
-    Nome do produto é de preenchimento obrigatório
+    O nome do produto é de preenchimento obrigatório
   </div>
 </div>
 
@@ -27,10 +27,13 @@
        }"
        #descricao="ngModel"
        class="form-control mb-2 col-md-4"
-       required />
+       required minlength="50" />
 <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
   <div *ngIf="descricao.errors.required">
-    Descrição do produto é de preenchimento obrigatório
+    A descrição do produto é de preenchimento obrigatório
+  </div>
+  <div *ngIf="descricao.errors.minlength">
+    A descrição do produto deve ter no mínimo 50 caracteres
   </div>
 </div>
 
@@ -47,7 +50,7 @@
        required />
 <div class="invalid-feedback mb-2" *ngIf="preco.invalid && (preco.dirty || preco.touched)">
   <div *ngIf="preco.errors.required">
-    Preço do produto é de preenchimento obrigatório
+    O preço do produto é de preenchimento obrigatório
   </div>
 </div>
 
