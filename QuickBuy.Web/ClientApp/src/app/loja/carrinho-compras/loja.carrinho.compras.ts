@@ -19,11 +19,12 @@ export class LojaCarrinhoCompras {
 
   }
 
-  public obterProdutos() : Produto[] {    // tipando mas nao é obrigatório nesse caso
+  public obterProdutos(): Produto[] {    // tipando mas nao é obrigatório nesse caso
     var produtoLocalStorage = localStorage.getItem("produtoLocalStorage");
     if (produtoLocalStorage) {
       return JSON.parse(produtoLocalStorage);
     }
+    return this.produtos;
   }
 
   public removerProduto(produto: Produto) {
@@ -37,6 +38,11 @@ export class LojaCarrinhoCompras {
 
   public atualizar(produtos: Produto[]) {
     localStorage.setItem("produtoLocalStorage", JSON.stringify(produtos));
+  }
+
+  public temItensCarrinhoCompras(): boolean {
+    var itens = this.obterProdutos();
+    return (itens.length > 0);
   }
 
 }

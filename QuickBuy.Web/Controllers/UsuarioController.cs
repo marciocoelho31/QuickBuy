@@ -39,6 +39,7 @@ namespace QuickBuy.Web.Controllers
                     return BadRequest("Usuário já cadastrado no sistema");
                 }
 
+                //usuario.EhAdmin = true;       // para criar um usuario admin
                 _usuarioRepositorio.Adicionar(usuario);
 
                 return Ok();

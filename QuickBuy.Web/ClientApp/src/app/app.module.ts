@@ -44,7 +44,7 @@ import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
       //{ path: 'produto', component: ProdutoComponent },
       { path: 'entrar', component: LoginComponent },
       { path: 'novo-usuario', component: CadastroUsuarioComponent },
-      { path: 'pesquisar-produto', component: PesquisaProdutoComponent },
+      { path: 'pesquisar-produto', component: PesquisaProdutoComponent, canActivate: [GuardaRotas] },
       { path: 'loja-produto', component: LojaProdutoComponent },
 
       // não confundir c/ o selector do .ts

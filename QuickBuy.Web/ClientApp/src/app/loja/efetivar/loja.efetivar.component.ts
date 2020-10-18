@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Produto } from "../../modelo/produto";
 import { LojaCarrinhoCompras } from "../carrinho-compras/loja.carrinho.compras";
 
@@ -13,6 +14,10 @@ export class LojaEfetivarComponent implements OnInit {
   public carrinhoCompras: LojaCarrinhoCompras;
   public produtos: Produto[];
   public total: number;
+
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit(): void {
     this.carrinhoCompras = new LojaCarrinhoCompras();
@@ -37,6 +42,9 @@ export class LojaEfetivarComponent implements OnInit {
     this.carrinhoCompras.removerProduto(produto);
     this.produtos = this.carrinhoCompras.obterProdutos();
     this.atualizarTotal();
+    if (this.produtos.length == 0) {
+      this.router.navigate(['/']);
+    }
   }
 
   public atualizarTotal() {

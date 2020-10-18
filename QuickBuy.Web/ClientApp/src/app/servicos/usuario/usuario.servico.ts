@@ -26,6 +26,10 @@ export class UsuarioServico {
     return this._usuario != null && this._usuario.email != "" && this._usuario.senha != "";
   }
 
+  public usuario_admin(): boolean {
+    return this.usuario_autenticado() && this.usuario.ehAdmin;
+  }
+
   get headers(): HttpHeaders {
     return new HttpHeaders().set('content-type', 'application/json');
   }
