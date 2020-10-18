@@ -18,6 +18,7 @@ import { LojaProdutoComponent } from './loja/produto/loja.produto.component';
 import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
 import { ProdutoServico } from './servicos/produto/produto.servico';
+import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProdutoServico } from './servicos/produto/produto.servico';
     CadastroUsuarioComponent,
     PesquisaProdutoComponent,
     LojaPesquisaComponent,
-    LojaProdutoComponent
+    LojaProdutoComponent,
+    LojaEfetivarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,15 +40,20 @@ import { ProdutoServico } from './servicos/produto/produto.servico';
     TruncateModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },      // <====  ROUTER MODULE
-      //{ path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
-      { path: 'produto', component: ProdutoComponent },
+      { path: 'produto', component: ProdutoComponent, canActivate: [GuardaRotas] },
+      //{ path: 'produto', component: ProdutoComponent },
       { path: 'entrar', component: LoginComponent },
       { path: 'novo-usuario', component: CadastroUsuarioComponent },
       { path: 'pesquisar-produto', component: PesquisaProdutoComponent },
       { path: 'loja-produto', component: LojaProdutoComponent },
+
+      // não confundir c/ o selector do .ts
+      // guardarotas aqui, porque o usuario só pode efetivar uma compra se estiver cadastrado
+      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotas] }   
     ])
   ],
   providers: [UsuarioServico, ProdutoServico],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

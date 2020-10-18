@@ -4,4 +4,8 @@ export class Produto {
   descricao: string;
   preco: number;
   nomeArquivo: string;
+
+  precoOriginal: number;    // apenas para o template do carrinho de compras
+  quantidade: number;
+
 }
