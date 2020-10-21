@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   //public usuarios = ["usuario1", "usuario2", "usuario3", "usuario4", "usuario5"];
   public returnUrl: string;
   public mensagem: string;
-  private ativar_spinner: boolean;
+  public ativar_spinner: boolean;
 
   constructor(private router: Router, private activatedRouter: ActivatedRoute,
     private usuarioServico: UsuarioServico ) {
