@@ -19,6 +19,8 @@ import { GuardaRotas } from './autorizacao/guarda.rotas';
 import { UsuarioServico } from './servicos/usuario/usuario.servico';
 import { ProdutoServico } from './servicos/produto/produto.servico';
 import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
+import { PedidoServico } from './servicos/pedido/pedido.servico';
+import { LojaCompraRealizadaComponent } from './loja/efetivar/loja.compra.realizada.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
     PesquisaProdutoComponent,
     LojaPesquisaComponent,
     LojaProdutoComponent,
-    LojaEfetivarComponent
+    LojaEfetivarComponent,
+    LojaCompraRealizadaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,10 +52,13 @@ import { LojaEfetivarComponent } from './loja/efetivar/loja.efetivar.component';
 
       // não confundir c/ o selector do .ts
       // guardarotas aqui, porque o usuario só pode efetivar uma compra se estiver cadastrado
-      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotas] }   
+      { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotas] },
+
+      { path: 'compra-realizada-sucesso', component: LojaCompraRealizadaComponent }
+
     ])
   ],
-  providers: [UsuarioServico, ProdutoServico],
+  providers: [UsuarioServico, ProdutoServico, PedidoServico],
   bootstrap: [AppComponent]
 })
 

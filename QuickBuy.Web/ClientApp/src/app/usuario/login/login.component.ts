@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
         usuario_json => {
           this.usuarioServico.usuario = usuario_json;   // aqui chama o set do usuario
 
+          console.log(usuario_json);
+
           if (this.returnUrl == null) {
             this.router.navigate(['/']);
           } else {

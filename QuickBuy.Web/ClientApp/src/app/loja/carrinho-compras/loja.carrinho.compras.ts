@@ -45,4 +45,8 @@ export class LojaCarrinhoCompras {
     return (itens.length > 0);
   }
 
+  public limparCarrinhoCompras() {
+    localStorage.setItem("produtoLocalStorage", "");
+  }
+
 }
