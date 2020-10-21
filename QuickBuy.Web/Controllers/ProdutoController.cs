@@ -13,11 +13,11 @@ namespace QuickBuy.Web.Controllers
     public class ProdutoController : Controller
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
-        private IHttpContextAccessor _httpContextAccessor;
-        private IHostingEnvironment _hostingEnvironment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
-            IHttpContextAccessor httpContextAccessor, IHostingEnvironment hostingEnvironment)
+            IHttpContextAccessor httpContextAccessor, IWebHostEnvironment hostingEnvironment)
         {
             _produtoRepositorio = produtoRepositorio;
             _httpContextAccessor = httpContextAccessor; // acesso ao contexto da requisição

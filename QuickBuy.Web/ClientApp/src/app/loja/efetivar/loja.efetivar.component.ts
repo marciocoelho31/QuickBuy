@@ -57,8 +57,7 @@ export class LojaEfetivarComponent implements OnInit {
   }
 
   public efetivarCompra() {
-    let pedido = this.criarPedido();
-    this.pedidoServico.efetivarCompra(pedido).subscribe(
+    this.pedidoServico.efetivarCompra(this.criarPedido()).subscribe(
       pedidoId => {
 
         console.log(pedidoId);

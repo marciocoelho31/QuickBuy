@@ -6,12 +6,8 @@ import { Pedido } from "../../modelo/pedido";
 @Injectable({
   providedIn: "root"
 })
-export class PedidoServico implements OnInit {
+export class PedidoServico {
   private baseURL: string;
-
-  ngOnInit(): void {
-
-  }
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseurl: string) {
     this.baseURL = baseurl;
